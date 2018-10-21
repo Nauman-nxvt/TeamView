@@ -1,0 +1,72 @@
+@font-face {
+  font-family: 'droid_sansregular';
+  src: url('./fonts/droid/droidsans-webfont.woff2') format('woff2'),
+  url('./fonts/droid/droidsans-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+$font-family-sans-serif: "droid_sansregular" !default;
+$font-family-base: "droid_sansregular" !default;
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+.container {
+  border: 1px solid #D1D1D1;
+  border-top: 2px solid #007672;
+  padding: 20px;
+}
+#navbar {
+  padding: 0;
+  margin-bottom: 0;
+}
+#main-heading {
+  color: #D1D1D1;
+  margin-bottom: 16px;
+}
+
+#team-div {
+
+}
+
+.team-block {
+  display: flex;
+  width: 50%;
+  height: 60px;
+  padding: 16px 0 16px 10px;
+  justify-content: flex-start;
+}
+
+#avatar-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.round-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #E2F4EA;
+  margin-left: 10px;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  color: #007672;
+  border: 0;
+  font-size: 25px;
+}
+
+#avatar-text {
+  width: 80%;
+  height: 40px;
+  margin-left: 10px;
+  p {
+    margin: 0;
+    text-align: left;
+    height: 20px;
+  }
+}
