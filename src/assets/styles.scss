@@ -27,15 +27,44 @@ $font-family-base: "droid_sansregular" !default;
 }
 
 #team-div {
+  display: flex;
+  width: 100%;
 
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
 
 .team-block {
   display: flex;
-  width: 50%;
+  //width: 50%;
   height: 72px;
   padding: 16px 0 16px 10px;
   justify-content: flex-start;
+}
+
+@media (min-width : 320px) and (max-width: 768px),
+(min-width : 1300px) and (max-width: 1900px) {
+  #team-div {
+    flex-wrap:nowrap;
+    flex-direction: column;
+  }
+  .team-block {
+    width: 100%;
+    height: 60px;
+    padding: 10px 0 10px 10px;
+  }
+}
+
+@media (min-width : 768px) and (max-width: 1300px), (min-width: 1900px) {
+  #team-div {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  .team-block {
+    width: 50%;
+    height: 72px;
+    padding: 16px 10px 16px 10px;
+  }
 }
 
 #avatar-img {
