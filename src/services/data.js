@@ -63,7 +63,7 @@ const members =
 ]
 
 export function getMembers() {
-  return members;
+  return [...members];
 }
 
 export function getMember(id) {
