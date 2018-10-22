@@ -69,26 +69,29 @@ class TeamView extends Component {
                 <div id={'navbar'} className={'row'}>
                     <h2 id={'main-heading'}>YOUR TEAM FOR THIS TEST</h2>
                 </div>
-                <div id={'team-div'} className={'row'}>
-                    <div className={'col-12'}
-                         style={{display: 'flex', width: '100%', justifyContent: 'flex-start', flexWrap: 'wrap'}}
-                    >
+                <div className={'row'}>
+                    <div id={'team-div'} className={'col-12'}>
                         <div className={'team-block'}>
-                            <select
-                                value={this.state.selectedMemberId}
-                                onChange={(e) => {
-                                    this.setState({
-                                        selectedMemberId: parseInt(e.target.value)
-                                    })
-                                }}>
-                                <option value={0}>Add a team member to this test</option>
-                                {Options}
-                            </select>
-                            <RoundBtn
-                                style={{backgroundColor: '#E2F4EA', color: '#007672', marginLeft: 10, alignSelf: 'center'}}
-                                onClick={this.addMember}
-                                content={'+'}
-                            />
+                            <div className={'col-9'}>
+                                <select
+                                    className={'form-control'}
+                                    value={this.state.selectedMemberId}
+                                    onChange={(e) => {
+                                        this.setState({
+                                            selectedMemberId: parseInt(e.target.value)
+                                        })
+                                    }}>
+                                    <option value={0}>Add a team member to this test</option>
+                                    {Options}
+                                </select>
+                            </div>
+                            <div className={'col-3'}>
+                                <RoundBtn
+                                    style={{backgroundColor: '#E2F4EA', color: '#007672', marginLeft: 10, alignSelf: 'center'}}
+                                    onClick={this.addMember}
+                                    content={'+'}
+                                />
+                            </div>
                         </div>
                         {TeamMembers}
                     </div>
