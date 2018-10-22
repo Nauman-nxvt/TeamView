@@ -1,5 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {getMembers, getMember} from '../services/data';
+import {RoundBtn} from "./RoundBtn";
+import Member from "./Member";
 
 class TeamView extends Component {
     constructor(props) {
@@ -12,10 +14,10 @@ class TeamView extends Component {
     }
 
     addMember = () => {
-        if (this.state.selectedMemberId == 0) {
+        if (this.state.selectedMemberId === 0) {
             return;
         }
-        const newMember = getMember(parseInt(this.state.selectedMemberId));
+        const newMember = getMember(this.state.selectedMemberId);
         const availableMembers = this.state.availableMembers;
         const index = availableMembers.indexOf(newMember);
 
@@ -23,7 +25,26 @@ class TeamView extends Component {
             availableMembers.splice(index, 1);
         }
         const team = this.state.team.concat(newMember);
-        this.setState({team, availableMembers});
+        this.setState({
+            team,
+            availableMembers,
+            selectedMemberId: 0,
+        });
+    };
+
+    removeMember = (id) => {
+        const newTeam = this.state.team.filter((member) => {
+            return member.id !== id;
+        });
+        console.log('id', id)
+        console.log('newTeam', newTeam)
+        const removedMember = getMember(id);
+        console.log('removedMember', removedMember)
+        const availableMembers = this.state.availableMembers.concat(removedMember).sort((a,b)=>{return a.id - b.id})
+        this.setState({
+            team: newTeam,
+            availableMembers,
+        });
     };
 
     render() {
@@ -38,20 +59,10 @@ class TeamView extends Component {
         const TeamMembers = this.state.team.map((member)=>{
             return(
                 <Fragment key={member.id}>
-                    <div className={'team-block'}>
-                        <div id={'avatar-img'}>
-                            <img style={{height: 40}} src={require(`../assets/images/${member.picture}`)}></img>
-                        </div>
-                        <div id={'avatar-text'}>
-                            <p>{member.role}</p>
-                            <p className={'font-weight-bold'}>{member.username}</p>
-                        </div>
-
-                    </div>
-
+                    <Member member={member} removeMember={this.removeMember}/>
                 </Fragment>
             )
-        })
+        });
 
         return (
             <Fragment>
@@ -67,13 +78,17 @@ class TeamView extends Component {
                                 value={this.state.selectedMemberId}
                                 onChange={(e) => {
                                     this.setState({
-                                        selectedMemberId: e.target.value
+                                        selectedMemberId: parseInt(e.target.value)
                                     })
                                 }}>
                                 <option value={0}>Add a team member to this test</option>
                                 {Options}
                             </select>
-                            <button className={'round-btn'} onClick={this.addMember}>+</button>
+                            <RoundBtn
+                                style={{backgroundColor: '#E2F4EA', color: '#007672', marginLeft: 10, alignSelf: 'center'}}
+                                onClick={this.addMember}
+                                content={'+'}
+                            />
                         </div>
                         {TeamMembers}
                     </div>
