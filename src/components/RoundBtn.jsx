@@ -19,5 +19,5 @@ const baseStyle = {
     justifyContent: 'center',
     alignItems: 'center',
     border: '0',
-    fontSize: 25,
+    fontSize: 22,
 };

@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {RoundBtn} from "./RoundBtn";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 export default class Member extends Component {
     constructor(props) {
@@ -26,7 +28,7 @@ export default class Member extends Component {
                         <RoundBtn
                             style={styles.removeBtn}
                             onClick={()=>{this.props.removeMember(member.id)}}
-                            content={'x'}
+                            content={<FontAwesomeIcon icon={faTimes}/>}
                         /> :
                         <div id={'avatar-img'}>
                             <img style={styles.avatarImg} src={require(`../assets/images/${member.picture}`)}/>

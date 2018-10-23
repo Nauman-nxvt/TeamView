@@ -28,7 +28,7 @@ export default class AddMember extends Component {
         });
         return(
             <div className={'team-block'}>
-                <div className={'col-9'}>
+                <div className={'col-9 no-padding'}>
                     <select
                         className={'form-control'}
                         value={this.state.selectedMemberId}
@@ -41,7 +41,7 @@ export default class AddMember extends Component {
                         {Options}
                     </select>
                 </div>
-                <div className={'col-3'}>
+                <div className={'col-3 no-padding'}>
                     <RoundBtn
                         style={{backgroundColor: '#E2F4EA', color: '#007672', marginLeft: 10, alignSelf: 'center'}}
                         onClick={this.onAddMember}
