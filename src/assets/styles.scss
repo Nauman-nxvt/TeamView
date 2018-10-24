@@ -18,13 +18,15 @@ $font-family-base: "droid_sansregular" !default;
   padding: 20px;
 }
 #navbar {
-  padding: 0;
   margin-bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  color: #999999;
 }
 #main-heading {
-  color: #D1D1D1;
   margin-bottom: 16px;
   text-align: left;
+  font-weight: bold;
 }
 
 #team-div {
@@ -53,6 +55,9 @@ $font-family-base: "droid_sansregular" !default;
     width: 100%;
     height: 60px;
     padding: 10px 0 10px 10px;
+  }
+  #team-page-span {
+    display: none
   }
 }
 
@@ -109,9 +114,29 @@ $font-family-base: "droid_sansregular" !default;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .no-padding {
   padding: 0 !important;
   margin: 0 !important;
+}
+
+.decorator {
+  color: #FFA03E;
+}
+
+#team-page-link {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  span{
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+    margin-right: 5px;
+  }
 }

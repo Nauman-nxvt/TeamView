@@ -20,4 +20,5 @@ const baseStyle = {
     alignItems: 'center',
     border: '0',
     fontSize: 22,
+    cursor: 'pointer',
 };
