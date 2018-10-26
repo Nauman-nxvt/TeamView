@@ -24,6 +24,7 @@ class AddMember extends Component {
         this.setState({
             selectVisible: false,
         });
+        this.props.hoverFalse();
     };
 
     hideSelect = () => {

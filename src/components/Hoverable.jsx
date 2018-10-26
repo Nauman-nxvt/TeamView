@@ -21,7 +21,7 @@ const Hoverable = (WrappedComponent, wrapperClass = '', hoveredStyle = {backgrou
             return (
                 <div className={wrapperClass} style={this.state.hovered ? hoveredStyle : unhoveredStyle}
                      onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}>
-                    <WrappedComponent {...this.props} hovered={this.state.hovered}/>
+                    <WrappedComponent {...this.props} hovered={this.state.hovered} hoverFalse={this.onMouseLeave}/>
                 </div>
             )
         }
