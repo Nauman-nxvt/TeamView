@@ -11,7 +11,7 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-scripts": "2.0.5",
-    "react-simple-storage": "^1.4.0"
+    "reactjs-localstorage": "^0.0.7"
   },
   "scripts": {
     "start": "react-scripts start",
