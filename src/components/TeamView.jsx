@@ -78,12 +78,14 @@ class TeamView extends Component {
     };
 
     loadLocalStorage = () => {
-        this.setState({
-            team: JSON.parse(reactLocalStorage.get('team')),
-            availableMembers: JSON.parse(reactLocalStorage.get('availableMembers')),
-            showAll: JSON.parse(reactLocalStorage.getObject('showAll')),
-            showAllBtnVisible: JSON.parse(reactLocalStorage.getObject('showAllBtnVisible')),
-        });
+        if (localStorage.hasOwnProperty('team') && localStorage.hasOwnProperty('availableMembers') && localStorage.hasOwnProperty('showAll') && localStorage.hasOwnProperty('showAllBtnVisible')) {
+            this.setState({
+                team: JSON.parse(reactLocalStorage.get('team')),
+                availableMembers: JSON.parse(reactLocalStorage.get('availableMembers')),
+                showAll: JSON.parse(reactLocalStorage.getObject('showAll')),
+                showAllBtnVisible: JSON.parse(reactLocalStorage.getObject('showAllBtnVisible')),
+            });
+        }
     };
 
     render() {
