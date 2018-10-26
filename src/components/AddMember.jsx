@@ -1,54 +1,74 @@
 import React, {Component, Fragment} from 'react';
-import {RoundBtn} from "./RoundBtn";
+import {RoundBtn} from "./sub-components/RoundBtn";
+import SelectMember from "./SelectMember";
+import Hoverable from './Hoverable'
 
-export default class AddMember extends Component {
+class AddMember extends Component {
     constructor(props) {
         super(props);
         this.state = {
             selectedMemberId: 0,
+            selectVisible: false,
         }
     }
 
-    onAddMember = () => {
-        const selectedMemberId = this.state.selectedMemberId;
-        if (selectedMemberId === 0) {
-            return;
+
+    showSelect = () => {
+        this.setState({selectVisible: true});
+    };
+
+    handleOnSelect = (selectedMemberId) => {
+        if (selectedMemberId !== 0) {
+            this.props.addMember(selectedMemberId);
         }
-        this.props.addMember(selectedMemberId);
-        this.setState({selectedMemberId: 0});
+        this.setState({
+            selectVisible: false,
+        });
+    };
+
+    hideSelect = () => {
+        this.state.selectVisible && this.setState({selectVisible: false});
     };
 
     render() {
-        const Options = this.props.availableMembers.map((member) => {
-            return(
-                <Fragment key={'opt'+member.id}>
-                    <option value={member.id}>{member.username}</option>
-                </Fragment>
-            );
-        });
-        return(
-            <div className={'team-block'}>
-                <div className={'col-9 no-padding'}>
-                    <select
-                        className={'form-control'}
-                        value={this.state.selectedMemberId}
-                        onChange={(e) => {
-                            this.setState({
-                                selectedMemberId: parseInt(e.target.value)
-                            })
-                        }}>
-                        <option value={0}>Add a team member to this test</option>
-                        {Options}
-                    </select>
-                </div>
-                <div className={'col-3 no-padding'}>
-                    <RoundBtn
-                        style={{backgroundColor: '#E2F4EA', color: '#007672', marginLeft: 10, alignSelf: 'center'}}
-                        onClick={this.onAddMember}
-                        content={'+'}
-                    />
-                </div>
-            </div>
+        const backgroundColor = this.props.hovered ? {backgroundColor: 'white'} : {backgroundColor: '#E2F4EA'}
+        return (
+            <Fragment>
+                {
+                    this.state.selectVisible ?
+                        <SelectMember
+                            hideSelect={this.hideSelect}
+                            availableMembers={this.props.availableMembers}
+                            handleOnSelect={this.handleOnSelect}
+                        /> :
+                        <div id={'addMemberDiv'}
+                             onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave}
+                             onClick={this.showSelect}
+                        >
+                            <RoundBtn
+                                style={{...styles.addMemberBtn, ...backgroundColor}}
+                                onClick={null}
+                                content={'+'}
+                            />
+                            <div id={'avatar-text'}>
+                                <p>Add team member</p>
+                                <p>to this test</p>
+                            </div>
+                        </div>
+                }
+            </Fragment>
         )
     }
 }
+
+const AddMemberHoverable = Hoverable(AddMember, 'team-block');
+
+export default AddMemberHoverable;
+
+const styles = {
+    addMemberBtn: {
+        color: '#007672',
+        marginLeft: 0,
+        alignSelf: 'center',
+    },
+};
